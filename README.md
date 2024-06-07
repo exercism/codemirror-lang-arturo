@@ -1,3 +1,3 @@
-# CodeMirror 6 example
+# Arturo language support for CodeMirror
 
-This repo contains some explorations of a CodeMirror grammar.
+This repo contains the grammar for the [Arturo language](https://arturo-lang.io/).

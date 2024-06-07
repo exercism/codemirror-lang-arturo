@@ -1,7 +1,7 @@
 {
-  "name": "codemirror-lang-example",
+  "name": "codemirror-lang-arturo",
   "version": "0.1.0",
-  "description": "example language support for CodeMirror",
+  "description": "Arturo language support for CodeMirror",
   "scripts": {
     "prepare": "rollup -c"
   },

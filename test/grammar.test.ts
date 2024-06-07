@@ -1,4 +1,4 @@
-import { exampleLanguage } from "../dist/index.js";
+import { arturoLanguage } from "../dist/index.js";
 import { fileTests } from "@lezer/generator/dist/test";
 
 import * as fs from "fs";
@@ -15,6 +15,6 @@ for (const file of fs.readdirSync(caseDir)) {
   describe(name, () => {
     const contents = fs.readFileSync(path.join(caseDir, file), "utf8");
     for (const { name, run } of fileTests(contents, file))
-      test(name, () => run(exampleLanguage.parser));
+      test(name, () => run(arturoLanguage.parser));
   });
 }
