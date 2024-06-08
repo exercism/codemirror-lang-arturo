@@ -35,6 +35,17 @@ Program(Integer, Integer)
 
 Program(Floating, Floating)
 
+# Version
+
+1.0.0
+23.101.19000-beta1
+7.8.9-rc1+build3
+7.8.9.2.3
+
+==>
+
+Program(Version, Version, Version, Version)
+
 # Null
 
 null

@@ -11,7 +11,7 @@ value {
 }
 
 expression {
-  logical | null | Word | Symbol | Integer | Floating
+  logical | null | Word | Symbol | Integer | Floating | Version
 }
 
 Symbol { "<=" | "=>" | "<=>" | "<<=" | "=>>" | "<<=>>" | "<-" | "->" | "<->" | "<<-" | "->>" | "<<->>" | "-<" | ">-" | ">-<" | "-<<" | ">>-" | ">>-<<" | "<<" | ">>" | "<<<" | ">>>" | "<--" | "-->" | "<-->" | "<==" | "==>" | "<==>" | "<~" | "~>" | "<~>" | "|>" | "<|" | "<|>" | "=<" | ">=" | "<>" | "<:" | "-:" | ">:" | "~" | "!" | "!!" | "?" | "??" | "@" | "#" | "##" | "###" | "####" | "#####" | "######" | "$" | "%" | "^" | "&" | "*" | "**" | "-" | "--" | "=" | "==" | "=~" | "+" | "++" | "<" | ">" | "/" | "/%" | "//" | "\\" | "\\\\" | "|" | "|-" | "|=" | ".." | "..." | "./" | ":" | "::" | ":=" | "||" | "∅" | "∞" | "∑" | "∏" | "∩" | "∪" | "⊂" | "⊃" | "⊆" | "⊇" | "∈" | "∉" | "∧" | "∨" | "⊻" | "⊼" | "¬" }
@@ -33,7 +33,8 @@ kwn<term, name> { @specialize[@name={name}]<identifier, term> }
 
   Integer { std.digit+ }
   Floating { std.digit+ "." std.digit+ }
-  @precedence { Floating, Integer }
+  Version { std.digit+ "." std.digit+ "." std.digit+ (std.asciiLetter | std.digit | "+" | "-" | ".")* }
+  @precedence { Version, Floating, Integer }
 
   identifierChar { std.asciiLetter | "_" }
   identifier { identifierChar (identifierChar | std.digit | "?")* }
