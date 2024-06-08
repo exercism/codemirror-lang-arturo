@@ -2,12 +2,24 @@
 
 @skip { whitespace | Comment }
 
-value {
-  boolean | null| Word
+@precedence {
+  label
 }
 
+value {
+  Label | expression
+}
+
+expression {
+  logical | null | Word | Symbol | Integer | Floating
+}
+
+Symbol { "<=" | "=>" | "<=>" | "<<=" | "=>>" | "<<=>>" | "<-" | "->" | "<->" | "<<-" | "->>" | "<<->>" | "-<" | ">-" | ">-<" | "-<<" | ">>-" | ">>-<<" | "<<" | ">>" | "<<<" | ">>>" | "<--" | "-->" | "<-->" | "<==" | "==>" | "<==>" | "<~" | "~>" | "<~>" | "|>" | "<|" | "<|>" | "=<" | ">=" | "<>" | "<:" | "-:" | ">:" | "~" | "!" | "!!" | "?" | "??" | "@" | "#" | "##" | "###" | "####" | "#####" | "######" | "$" | "%" | "^" | "&" | "*" | "**" | "-" | "--" | "=" | "==" | "=~" | "+" | "++" | "<" | ">" | "/" | "/%" | "//" | "\\" | "\\\\" | "|" | "|-" | "|=" | ".." | "..." | "./" | ":" | "::" | ":=" | "||" | "∅" | "∞" | "∑" | "∏" | "∩" | "∪" | "⊂" | "⊃" | "⊆" | "⊇" | "∈" | "∉" | "∧" | "∨" | "⊻" | "⊼" | "¬" }
+
+Label { Word !label ":" expression }
+
 null { kw<"null"> }
-boolean { kwn<"true" | "false", Boolean> }
+logical { kwn<"true" | "false" | "maybe", Logical> }
 
 Word { identifier }
 
@@ -18,6 +30,10 @@ kwn<term, name> { @specialize[@name={name}]<identifier, term> }
   whitespace { std.whitespace+ }
 
   Comment { ";" ![\n]* } 
+
+  Integer { std.digit+ }
+  Floating { std.digit+ "." std.digit+ }
+  @precedence { Floating, Integer }
 
   identifierChar { std.asciiLetter | "_" }
   identifier { identifierChar (identifierChar | std.digit | "?")* }

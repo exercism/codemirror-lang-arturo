@@ -1,11 +1,39 @@
-# Booleans
+# Logical
 
 true
 false
+maybe
 
 ==>
 
-Program(Boolean, Boolean)
+Program(Logical, Logical, Logical)
+
+# Symbol
+
+<=
+∈
+
+==>
+
+Program(Symbol, Symbol)
+
+# Integer
+
+1
+0123456789
+
+==>
+
+Program(Integer, Integer)
+
+# Floating
+
+1.0
+0.123456789
+
+==>
+
+Program(Floating, Floating)
 
 # Null
 
@@ -24,3 +52,12 @@ happy?
 ==>
 
 Program(Word, Word, Word)
+
+# Label
+
+a: 2
+b: a
+
+==>
+
+Program(Label(Word,Integer),Label(Word,Word))
