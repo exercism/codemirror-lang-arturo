@@ -31,7 +31,7 @@ kwn<term, name> { @specialize[@name={name}]<identifier, term> }
 
   Comment { ";" ![\n]* } 
 
-  Integer { std.digit+ }
+  Integer { std.digit+ (("e" | "E") ("+" | "-")? (std.digit)+)? }
   Floating { std.digit+ "." std.digit+ }
   Version { std.digit+ "." std.digit+ "." std.digit+ (std.asciiLetter | std.digit | "+" | "-" | ".")* }
   @precedence { Version, Floating, Integer }

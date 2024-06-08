@@ -21,10 +21,13 @@ Program(Symbol, Symbol)
 
 1
 0123456789
+2e3
+4e-523
+71e+1
 
 ==>
 
-Program(Integer, Integer)
+Program(Integer, Integer, Integer, Integer, Integer)
 
 # Floating
 
