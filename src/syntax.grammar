@@ -1,31 +1,45 @@
 @top Program { value* }
 
-@skip { whitespace | LineComment }
+@skip { whitespace | Comment }
 
 value {
-  Identifier
+  boolean | null| Word
 }
 
-Identifier {
-  PermittedIdentifiers_Start PermittedIdentifiers_In*
-}
+null { kw<"null"> }
+boolean { kwn<"true" | "false", Boolean> }
+
+Word { identifier }
+
+kw<term> { kwn<term, term> }
+kwn<term, name> { @specialize[@name={name}]<identifier, term> }
 
 @tokens { 
-  whitespace { $[ \t\n\r]+ }
+  whitespace { std.whitespace+ }
 
-  LineComment { ";" ![\n]* }
+  Comment { ";" ![\n]* } 
 
-  Numbers                    { $[0-9] }
-  PermittedNumbers_Start     { Numbers }
-  ScientificNotation         { PermittedNumbers_Start | "+" | "-" }
-  ScientificNotation_Start   { "e" | "E" }
-  Symbols                    { "~" | "!" | "@" | "#" | "$" | "%" | "^" | "&" | "*" | "-" | "=" | "+" | "<" | ">" | "/" | "|" | "?" }
-  Letters                    { $[a-zA-Z] }
-  
-  PermittedColorChars        { Letters | Numbers }
-  
-  PermittedQuantityChars     { Letters | Numbers | "." | "/" }  
-  SemVerExtra                { Letters | PermittedNumbers_Start | "+" | "-" | "." }
+  identifierChar { std.asciiLetter | "_" }
+  identifier { identifierChar (identifierChar | std.digit | "?")* }
+
+  @precedence { identifier, whitespace }  
 }
 
 @detectDelim
+
+
+// Identifier {
+//   (Letters | "_") (Letters | Numbers | "_" | "?")*
+// }
+// @precedence { Identifier, Letters, Numbers }
+// Numbers                    { $[0-9] }
+// PermittedNumbers_Start     { Numbers }
+// ScientificNotation         { PermittedNumbers_Start | "+" | "-" }
+// ScientificNotation_Start   { "e" | "E" }
+// Symbols                    { "~" | "!" | "@" | "#" | "$" | "%" | "^" | "&" | "*" | "-" | "=" | "+" | "<" | ">" | "/" | "|" | "?" }
+// Letters                    { $[a-zA-Z] }
+
+// PermittedColorChars        { Letters | Numbers }
+
+// PermittedQuantityChars     { Letters | Numbers | "." | "/" }  
+// SemVerExtra                { Letters | PermittedNumbers_Start | "+" | "-" | "." }

@@ -1,41 +1,26 @@
 # Booleans
 
-#t
-#f
+true
+false
 
 ==>
 
 Program(Boolean, Boolean)
 
-# Identifiers
+# Null
+
+null
+
+==>
+
+Program(null)
+
+# Word
 
 one
 Two_Three
+happy?
 
 ==>
 
-Program(Identifier, Identifier)
-
-# Strings
-
-"hello"
-"one\"\\two"
-
-==>
-
-Program(String, String)
-
-# Applications
-
-(begin
-  (when #t
-    (print (concat "hello" " " "world")))
-  (print "DONE"))
-
-==>
-
-Program(Application(
-  Identifier,
-  Application(Identifier, Boolean, Application(
-    Identifier, Application(Identifier, String, String, String)))
-  Application(Identifier, String)))
+Program(Word, Word, Word)
