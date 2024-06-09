@@ -8,15 +8,6 @@ maybe
 
 Program(Logical, Logical, Logical)
 
-# Symbol
-
-<=
-∈
-
-==>
-
-Program(Symbol, Symbol)
-
 # Integer
 
 1
@@ -48,6 +39,14 @@ Program(Floating, Floating)
 ==>
 
 Program(Version, Version, Version, Version)
+
+# Type
+
+:integer
+
+==>
+
+Program(Type)
 
 # Null
 
