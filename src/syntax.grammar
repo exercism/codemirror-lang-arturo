@@ -28,16 +28,18 @@ kwn<term, name> { @specialize[@name={name}]<identifier, term> }
 
 @tokens { 
   whitespace { std.whitespace+ }
+  digit { std.digit }
+  letter { std.asciiLetter }
 
   Comment { ";" ![\n]* } 
 
-  Integer { std.digit+ (("e" | "E") ("+" | "-")? (std.digit)+)? }
-  Floating { std.digit+ "." std.digit+ }
-  Version { std.digit+ "." std.digit+ "." std.digit+ (std.asciiLetter | std.digit | "+" | "-" | ".")* }
+  Integer { digit+ (("e" | "E") ("+" | "-")? digit+)? }
+  Floating { digit+ "." digit+ }
+  Version { digit+ "." digit+ "." digit+ (letter | digit | "+" | "-" | ".")* }
   @precedence { Version, Floating, Integer }
 
-  identifierChar { std.asciiLetter | "_" }
-  identifier { identifierChar (identifierChar | std.digit | "?")* }
+  identifierChar { letter | "_" }
+  identifier { identifierChar (identifierChar | digit | "?")* }
 
   @precedence { identifier, whitespace }  
 }
