@@ -56,6 +56,15 @@ null
 
 Program(null)
 
+# Char
+
+`a`
+`9`
+
+==>
+
+Program(Char, Char)
+
 # Word
 
 one
