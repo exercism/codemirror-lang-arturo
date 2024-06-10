@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "Arturo language support for CodeMirror",
   "scripts": {
-    "prepare": "rollup -c"
+    "prepare": "rollup -c",
+    "dev": "vite"
   },
   "type": "module",
   "main": "dist/index.cjs",
@@ -22,10 +23,12 @@
   "devDependencies": {
     "@lezer/generator": "^1.7.0",
     "@types/bun": "^1.1.3",
+    "codemirror": "^6.0.1",
     "rollup": "^4.18.0",
     "rollup-plugin-dts": "^6.1.1",
     "rollup-plugin-ts": "^3.4.5",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "vite": "^5.2.13"
   },
   "license": "MIT"
 }
