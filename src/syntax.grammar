@@ -1,6 +1,6 @@
 @top Program { value* }
 
-@skip { whitespace | Comment }
+@skip { whitespace+ | Comment }
 
 @precedence {
   label @left
@@ -11,7 +11,7 @@ value {
 }
 
 expression {
-  logical | null | Word | Char | Integer | Floating | Version | Type
+  logical | null | Word | Char | String | Integer | Floating | Version | Type
 }
 
 Label { Word !label ":" expression }
@@ -25,11 +25,19 @@ Word { identifier }
 
 Char { "`" char "`" }
 
+@skip {} {
+  String {
+    '"' (StringEscape | quotedStringContent)* '"'
+    //  |
+    // "«" whitespace* smartQuoteStringContent*
+  }
+}
+
 kw<term> { kwn<term, term> }
 kwn<term, name> { @specialize[@name={name}]<identifier, term> }
 
 @tokens { 
-  whitespace { std.whitespace+ }
+  whitespace { std.whitespace }
   digit { std.digit }
   letter { std.asciiLetter }
 
@@ -38,6 +46,12 @@ kwn<term, name> { @specialize[@name={name}]<identifier, term> }
   Comment { ";" ![\n]* } 
 
   @precedence { Comment, char, whitespace }
+
+  StringEscape { "\\" _ }
+  quotedStringContent { !["] }
+  smartQuoteStringContent { ![\n] }
+
+  @precedence { StringEscape smartQuoteStringContent quotedStringContent }
 
   Integer { digit+ (("e" | "E") ("+" | "-")? digit+)? }
   Floating { digit+ "." digit+ }

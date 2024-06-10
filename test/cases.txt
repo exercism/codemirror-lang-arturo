@@ -65,6 +65,15 @@ Program(null)
 
 Program(Char, Char)
 
+# String
+
+"this is a quoted string"
+"this\tis a quoted\nstring\"with escapes"
+
+==>
+
+Program(String, String(StringEscape, StringEscape, StringEscape))
+
 # Word
 
 one
