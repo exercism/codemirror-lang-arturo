@@ -69,10 +69,30 @@ Program(Char, Char)
 
 "this is a quoted string"
 "this\tis a quoted\nstring\"with escapes"
+{
+    this is yet
+    another
+    very
+    long string
+    that spans more
+    than
+    one
+    line
+}
+{:
+  this is yet
+    another
+    very
+  long string
+  that spans more
+      than
+          one
+          line
+:}
 
 ==>
 
-Program(String, String(StringEscape, StringEscape, StringEscape))
+Program(String, String(StringEscape, StringEscape, StringEscape), String, String)
 
 # Word
 

@@ -27,7 +27,9 @@ Char { "`" char "`" }
 
 @skip {} {
   String {
-    '"' (StringEscape | quotedStringContent)* '"'
+    '"' (StringEscape | quotedStringContent)* '"' |
+    '{:' multilineStringContent* ':}' |
+    '{' multilineStringContent* '}'
     //  |
     // "«" whitespace* smartQuoteStringContent*
   }
@@ -50,8 +52,12 @@ kwn<term, name> { @specialize[@name={name}]<identifier, term> }
   StringEscape { "\\" _ }
   quotedStringContent { !["] }
   smartQuoteStringContent { ![\n] }
+  multilineStringContent { ![}] }
+  dashStringContent { _ }
 
-  @precedence { StringEscape smartQuoteStringContent quotedStringContent }
+  @precedence { dashStringContent, Comment, whitespace }
+
+  @precedence { StringEscape, smartQuoteStringContent, multilineStringContent, quotedStringContent }
 
   Integer { digit+ (("e" | "E") ("+" | "-")? digit+)? }
   Floating { digit+ "." digit+ }
