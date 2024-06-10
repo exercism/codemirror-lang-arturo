@@ -13,16 +13,17 @@ export const arturoLanguage = LRLanguage.define({
   parser: parser.configure({
     props: [
       indentNodeProp.add({
-        Application: delimitedIndent({ closing: "]", align: false }),
+        Application: delimitedIndent({ closing: ")", align: false }),
       }),
       foldNodeProp.add({
         Application: foldInside,
       }),
       styleTags({
-        Word: t.variableName,
-        Logical: t.bool,
+        Identifier: t.variableName,
+        Boolean: t.bool,
         String: t.string,
-        Comment: t.lineComment,
+        LineComment: t.lineComment,
+        "( )": t.paren,
       }),
     ],
   }),

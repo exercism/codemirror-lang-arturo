@@ -6,25 +6,25 @@
     <title>Arturo playground</title>
   </head>
   <body>
+    <div id=editor></div>
     <script type="module">
-      import {basicSetup, EditorView} from "codemirror"
-      import {EditorState, Compartment} from "@codemirror/state"
-      import {arturo} from "./dist/index.js"
+        import {basicSetup, EditorView} from "codemirror"
+        import {EditorState, Compartment} from "@codemirror/state"
+        import {arturo} from "./dist/index.js"
 
-      let language = new Compartment, tabSize = new Compartment
+        window.view = new EditorView({
+            doc: 
+`(begin
+  (when #t
+    (print (concat "hello" " " "world")))
+  (print "DONE"))`,
+            extensions: [
+                basicSetup,
+                arturo(),
+            ],
+            parent: document.querySelector("#editor"),
+        });
 
-      let state = EditorState.create({
-        extensions: [
-          basicSetup,
-          language.of(arturo()),
-          tabSize.of(EditorState.tabSize.of(8))
-        ]
-      })
-
-      let view = new EditorView({
-        state,
-        parent: document.body
-      })
     </script>
   </body>
 </html>

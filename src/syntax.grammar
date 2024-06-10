@@ -1,90 +1,122 @@
-@top Program { value* }
+@top Program { expression* }
 
-@skip { whitespace+ | Comment }
-
-@precedence {
-  label @left
-}
-
-value {
-  Label | expression
-}
+@skip { space | LineComment }
 
 expression {
-  logical | null | Word | Char | String | Integer | Floating | Version | Type
+  Identifier |
+  String |
+  Boolean |
+  Application { "(" expression* ")" }
 }
 
-Label { Word !label ":" expression }
+@tokens {
+  Identifier { $[a-zA-Z_\-0-9]+ }
 
-Type { ":" identifier }
+  String { '"' (!["\\] | "\\" _)* '"' }
 
-null { kw<"null"> }
-logical { kwn<"true" | "false" | "maybe", Logical> }
+  Boolean { "#t" | "#f" }
 
-Word { identifier }
+  LineComment { ";" ![\n]* }
 
-Char { "`" char "`" }
+  space { $[ \t\n\r]+ }
 
-@skip {} {
-  String {
-    '"' (StringEscape | quotedStringContent)* '"' |
-    '{:' multilineStringContent* ':}' |
-    '{' multilineStringContent* '}'
-    //  |
-    // "«" whitespace* smartQuoteStringContent*
-  }
-}
-
-kw<term> { kwn<term, term> }
-kwn<term, name> { @specialize[@name={name}]<identifier, term> }
-
-@tokens { 
-  whitespace { std.whitespace }
-  digit { std.digit }
-  letter { std.asciiLetter }
-
-  char { ![`] }
-
-  Comment { ";" ![\n]* } 
-
-  @precedence { Comment, char, whitespace }
-
-  StringEscape { "\\" _ }
-  quotedStringContent { !["] }
-  smartQuoteStringContent { ![\n] }
-  multilineStringContent { ![}] }
-  dashStringContent { _ }
-
-  @precedence { dashStringContent, Comment, whitespace }
-
-  @precedence { StringEscape, smartQuoteStringContent, multilineStringContent, quotedStringContent }
-
-  Integer { digit+ (("e" | "E") ("+" | "-")? digit+)? }
-  Floating { digit+ "." digit+ }
-  Version { digit+ "." digit+ "." digit+ (letter | digit | "+" | "-" | ".")* }
-  @precedence { Version, Floating, Integer }
-
-  identifierChar { letter | "_" }
-  identifier { identifierChar (identifierChar | digit | "?")* }
-
-  @precedence { identifier, whitespace }  
+  "(" ")"
 }
 
 @detectDelim
 
-// Symbol { "<=" | "=>" | "<=>" | "<<=" | "=>>" | "<<=>>" | "<-" | "->" | "<->" | "<<-" | "->>" | "<<->>" | "-<" | ">-" | ">-<" | "-<<" | ">>-" | ">>-<<" | "<<" | ">>" | "<<<" | ">>>" | "<--" | "-->" | "<-->" | "<==" | "==>" | "<==>" | "<~" | "~>" | "<~>" | "|>" | "<|" | "<|>" | "=<" | ">=" | "<>" | "<:" | "-:" | ">:" | "~" | "!" | "!!" | "?" | "??" | "@" | "#" | "##" | "###" | "####" | "#####" | "######" | "$" | "%" | "^" | "&" | "*" | "**" | "-" | "--" | "=" | "==" | "=~" | "+" | "++" | "<" | ">" | "/" | "/%" | "//" | "\\" | "\\\\" | "|" | "|-" | "|=" | ".." | "..." | "./" | ":" | "::" | ":=" | "||" | "∅" | "∞" | "∑" | "∏" | "∩" | "∪" | "⊂" | "⊃" | "⊆" | "⊇" | "∈" | "∉" | "∧" | "∨" | "⊻" | "⊼" | "¬" }
-// Identifier {
-//   (Letters | "_") (Letters | Numbers | "_" | "?")*
+
+
+
+
+
+// @top Program { value* }
+
+// @skip { whitespace+ | Comment }
+
+// @precedence {
+//   label @left
 // }
-// @precedence { Identifier, Letters, Numbers }
-// Numbers                    { $[0-9] }
-// PermittedNumbers_Start     { Numbers }
-// ScientificNotation         { PermittedNumbers_Start | "+" | "-" }
-// ScientificNotation_Start   { "e" | "E" }
-// Symbols                    { "~" | "!" | "@" | "#" | "$" | "%" | "^" | "&" | "*" | "-" | "=" | "+" | "<" | ">" | "/" | "|" | "?" }
-// Letters                    { $[a-zA-Z] }
 
-// PermittedColorChars        { Letters | Numbers }
+// value {
+//   Label | expression
+// }
 
-// PermittedQuantityChars     { Letters | Numbers | "." | "/" }  
-// SemVerExtra                { Letters | PermittedNumbers_Start | "+" | "-" | "." }
+// expression {
+//   logical | null | Word | Char | String | Integer | Floating | Version | Type
+// }
+
+// Label { Word !label ":" expression }
+
+// Type { ":" identifier }
+
+// null { kw<"null"> }
+// logical { kwn<"true" | "false" | "maybe", Logical> }
+
+// Word { identifier }
+
+// Char { "`" char "`" }
+
+// @skip {} {
+//   String {
+//     '"' (StringEscape | quotedStringContent)* '"' |
+//     '{:' multilineStringContent* ':}' |
+//     '{' multilineStringContent* '}'
+//     //  |
+//     // "«" whitespace* smartQuoteStringContent*
+//   }
+// }
+
+// kw<term> { kwn<term, term> }
+// kwn<term, name> { @specialize[@name={name}]<identifier, term> }
+
+// @tokens { 
+//   whitespace { std.whitespace }
+//   digit { std.digit }
+//   letter { std.asciiLetter }
+
+//   char { ![`] }
+
+//   Comment { ";" ![\n]* } 
+
+//   @precedence { Comment, char, whitespace }
+
+//   StringEscape { "\\" _ }
+//   quotedStringContent { !["] }
+//   smartQuoteStringContent { ![\n] }
+//   multilineStringContent { ![}] }
+//   dashStringContent { _ }
+
+//   @precedence { dashStringContent, Comment, whitespace }
+
+//   @precedence { StringEscape, smartQuoteStringContent, multilineStringContent, quotedStringContent }
+
+//   Integer { digit+ (("e" | "E") ("+" | "-")? digit+)? }
+//   Floating { digit+ "." digit+ }
+//   Version { digit+ "." digit+ "." digit+ (letter | digit | "+" | "-" | ".")* }
+//   @precedence { Version, Floating, Integer }
+
+//   identifierChar { letter | "_" }
+//   identifier { identifierChar (identifierChar | digit | "?")* }
+
+//   @precedence { identifier, whitespace }  
+// }
+
+// @detectDelim
+
+// // Symbol { "<=" | "=>" | "<=>" | "<<=" | "=>>" | "<<=>>" | "<-" | "->" | "<->" | "<<-" | "->>" | "<<->>" | "-<" | ">-" | ">-<" | "-<<" | ">>-" | ">>-<<" | "<<" | ">>" | "<<<" | ">>>" | "<--" | "-->" | "<-->" | "<==" | "==>" | "<==>" | "<~" | "~>" | "<~>" | "|>" | "<|" | "<|>" | "=<" | ">=" | "<>" | "<:" | "-:" | ">:" | "~" | "!" | "!!" | "?" | "??" | "@" | "#" | "##" | "###" | "####" | "#####" | "######" | "$" | "%" | "^" | "&" | "*" | "**" | "-" | "--" | "=" | "==" | "=~" | "+" | "++" | "<" | ">" | "/" | "/%" | "//" | "\\" | "\\\\" | "|" | "|-" | "|=" | ".." | "..." | "./" | ":" | "::" | ":=" | "||" | "∅" | "∞" | "∑" | "∏" | "∩" | "∪" | "⊂" | "⊃" | "⊆" | "⊇" | "∈" | "∉" | "∧" | "∨" | "⊻" | "⊼" | "¬" }
+// // Identifier {
+// //   (Letters | "_") (Letters | Numbers | "_" | "?")*
+// // }
+// // @precedence { Identifier, Letters, Numbers }
+// // Numbers                    { $[0-9] }
+// // PermittedNumbers_Start     { Numbers }
+// // ScientificNotation         { PermittedNumbers_Start | "+" | "-" }
+// // ScientificNotation_Start   { "e" | "E" }
+// // Symbols                    { "~" | "!" | "@" | "#" | "$" | "%" | "^" | "&" | "*" | "-" | "=" | "+" | "<" | ">" | "/" | "|" | "?" }
+// // Letters                    { $[a-zA-Z] }
+
+// // PermittedColorChars        { Letters | Numbers }
+
+// // PermittedQuantityChars     { Letters | Numbers | "." | "/" }  
+// // SemVerExtra                { Letters | PermittedNumbers_Start | "+" | "-" | "." }
