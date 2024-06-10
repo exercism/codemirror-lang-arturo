@@ -40,14 +40,6 @@ Program(Floating, Floating)
 
 Program(Version, Version, Version, Version)
 
-# Type
-
-:integer
-
-==>
-
-Program(Type)
-
 # Null
 
 null
@@ -55,6 +47,14 @@ null
 ==>
 
 Program(null)
+
+# Type
+
+:integer
+
+==>
+
+Program(Type)
 
 # Char
 

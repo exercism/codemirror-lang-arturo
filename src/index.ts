@@ -20,7 +20,7 @@ export const arturoLanguage = LRLanguage.define({
       }),
       styleTags({
         Identifier: t.variableName,
-        Boolean: t.bool,
+        Logical: t.bool,
         String: t.string,
         LineComment: t.lineComment,
         "( )": t.paren,

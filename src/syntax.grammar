@@ -1,36 +1,43 @@
 @top Program { expression* }
 
-@skip { space | LineComment }
+@skip { whitespace | LineComment }
 
 expression {
-  Identifier |
-  String |
-  boolean |
-  Application { "(" expression* ")" }
+  logical |
+  number |
+  null
 }
 
-boolean {
-  @specialize[@name=Boolean]<Identifier, "true" | "false" | "maybe">
+logical {
+  kwn<"true" | "false" | "maybe", Logical>
 }
+
+number {
+  Integer | Floating | Version
+}
+
+null { kw<"null"> }
+
+kw<term> { kwn<term, term> }
+kwn<term, name> { @specialize[@name={name}]<identifier, term> }
 
 @tokens {
-  Identifier { $[a-zA-Z_\-0-9]+ }
+  whitespace { std.whitespace+ }
+  digit { std.digit }
+  letter { std.asciiLetter }
 
-  String { '"' (!["\\] | "\\" _)* '"' }
+  Integer { digit+ (("e" | "E") ("+" | "-")? digit+)? }
+  Floating { digit+ "." digit+ }
+  Version { digit+ "." digit+ "." digit+ (letter | digit | "+" | "-" | ".")* }
+  @precedence { Version, Floating, Integer }
+
+  identifierChar { letter | "_" }
+  identifier { identifierChar (identifierChar | digit | "?")* }
 
   LineComment { ";" ![\n]* }
-
-  space { $[ \t\n\r]+ }
-
-  "(" ")"
 }
 
 @detectDelim
-
-
-
-
-
 
 // @top Program { value* }
 
