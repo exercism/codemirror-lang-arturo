@@ -58,12 +58,13 @@ Program(Type)
 
 # Char
 
-`a`
-`9`
+'a'
+'9'
+'\t'
 
 ==>
 
-Program(Char, Char)
+Program(Char, Char, Char)
 
 # String
 

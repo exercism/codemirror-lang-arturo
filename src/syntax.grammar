@@ -5,7 +5,10 @@
 expression {
   logical |
   number |
-  null
+  null |
+  Type |
+  Char |
+  Word
 }
 
 logical {
@@ -17,6 +20,10 @@ number {
 }
 
 null { kw<"null"> }
+
+Type { ":" identifier }
+
+Word { identifier }
 
 kw<term> { kwn<term, term> }
 kwn<term, name> { @specialize[@name={name}]<identifier, term> }
@@ -30,6 +37,9 @@ kwn<term, name> { @specialize[@name={name}]<identifier, term> }
   Floating { digit+ "." digit+ }
   Version { digit+ "." digit+ "." digit+ (letter | digit | "+" | "-" | ".")* }
   @precedence { Version, Floating, Integer }
+
+  Char { "'" (CharEscape | ![']) "'" }
+  CharEscape { "\\" _ }
 
   identifierChar { letter | "_" }
   identifier { identifierChar (identifierChar | digit | "?")* }
@@ -90,7 +100,7 @@ kwn<term, name> { @specialize[@name={name}]<identifier, term> }
 
 //   @precedence { Comment, char, whitespace }
 
-//   StringEscape { "\\" _ }
+//   CharEscape { "\\" _ }
 //   quotedStringContent { !["] }
 //   smartQuoteStringContent { ![\n] }
 //   multilineStringContent { ![}] }
