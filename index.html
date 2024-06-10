@@ -14,10 +14,81 @@
 
         window.view = new EditorView({
             doc: 
-`; This is a comment
+`; Logical
+
 true
 false
-maybe`,
+maybe
+
+; Integer
+
+1
+0123456789
+2e3
+4e-523
+71e+1
+
+; Floating
+
+1.0
+0.123456789
+
+; Version
+
+1.0.0
+23.101.19000-beta1
+7.8.9-rc1+build3
+7.8.9.2.3
+
+; Null
+
+null
+
+; Type
+
+:integer
+
+; Char
+
+\`a\`
+\`9\`
+
+; String
+
+"this is a quoted string"
+"this\tis a quoted\nstring\"with escapes"
+{
+    this is yet
+    another
+    very
+    long string
+    that spans more
+    than
+    one
+    line
+}
+{:
+  this is yet
+    another
+    very
+  long string
+  that spans more
+      than
+          one
+          line
+:}
+
+; Word
+
+one
+Two_Three
+happy?
+
+; Label
+
+a: 2
+b: a
+`,
             extensions: [
                 basicSetup,
                 arturo(),
