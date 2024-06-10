@@ -5,16 +5,18 @@
 expression {
   Identifier |
   String |
-  Boolean |
+  boolean |
   Application { "(" expression* ")" }
+}
+
+boolean {
+  @specialize[@name=Boolean]<Identifier, "true" | "false" | "maybe">
 }
 
 @tokens {
   Identifier { $[a-zA-Z_\-0-9]+ }
 
   String { '"' (!["\\] | "\\" _)* '"' }
-
-  Boolean { "#t" | "#f" }
 
   LineComment { ";" ![\n]* }
 
