@@ -8,6 +8,7 @@ expression {
   null |
   Type |
   Char |
+  String |
   Word |
   Color |
   Literal |
@@ -34,6 +35,12 @@ Word { identifier }
 
 Inline { "(" expression ")" }
 
+@skip {} {
+  String {
+    '"' (Escape | stringContentQuoted)* '"'
+  }
+}
+
 kw<term> { kwn<term, term> }
 kwn<term, name> { @specialize[@name={name}]<identifier, term> }
 
@@ -50,8 +57,10 @@ kwn<term, name> { @specialize[@name={name}]<identifier, term> }
 
   Color { "#" (hex hex hex hex hex hex | letter+) }
 
-  Char { "'" (CharEscape | ![']) "'" }
-  CharEscape { "\\" _ }
+  Char { "'" (Escape | ![']) "'" }
+  Escape { "\\" _ }
+
+  stringContentQuoted { ![\\\n"]+ }
 
   identifierChar { letter | "_" }
   identifier { identifierChar (identifierChar | digit | "?")* }
@@ -114,7 +123,7 @@ kwn<term, name> { @specialize[@name={name}]<identifier, term> }
 
 //   @precedence { Comment, char, whitespace }
 
-//   CharEscape { "\\" _ }
+//   Escape { "\\" _ }
 //   quotedStringContent { !["] }
 //   smartQuoteStringContent { ![\n] }
 //   multilineStringContent { ![}] }
