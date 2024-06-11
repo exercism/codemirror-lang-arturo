@@ -114,11 +114,11 @@ happy?
 
 Program(Word, Word, Word)
 
-# Label
+# Inline
 
-a: 2
-b: a
+(1)
+((true)(false))
 
 ==>
 
-Program(Label(Word,Integer),Label(Word,Word))
+Program(Inline(Integer), Inline(Inline(Logical),Inline(Logical)))

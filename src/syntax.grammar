@@ -9,7 +9,8 @@ expression {
   Type |
   Char |
   Word |
-  Color
+  Color |
+  Inline
 }
 
 logical {
@@ -25,6 +26,8 @@ null { kw<"null"> }
 Type { ":" identifier }
 
 Word { identifier }
+
+Inline { "(" expression ")" }
 
 kw<term> { kwn<term, term> }
 kwn<term, name> { @specialize[@name={name}]<identifier, term> }
