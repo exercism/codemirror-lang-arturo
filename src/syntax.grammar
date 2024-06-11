@@ -10,6 +10,7 @@ expression {
   Char |
   Word |
   Color |
+  Literal |
   Inline
 }
 
@@ -24,6 +25,8 @@ number {
 null { kw<"null"> }
 
 Type { ":" identifier }
+
+Literal { "'" identifier }
 
 Word { identifier }
 

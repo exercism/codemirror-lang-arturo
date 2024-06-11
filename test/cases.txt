@@ -56,6 +56,14 @@ Program(null)
 
 Program(Type)
 
+# Literal
+
+'foo
+
+==>
+
+Program(Literal)
+
 # Color
 
 #red
