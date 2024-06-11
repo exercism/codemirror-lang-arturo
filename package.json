@@ -28,6 +28,7 @@
     "rollup-plugin-dts": "^6.1.1",
     "rollup-plugin-ts": "^3.4.5",
     "typescript": "^5.4.5",
+    "unplugin-lezer": "^1.0.0",
     "vite": "^5.2.13"
   },
   "license": "MIT"
