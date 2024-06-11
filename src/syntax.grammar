@@ -38,7 +38,7 @@ Inline { "(" expression* ")" }
 @skip {} {
   String {
     '"' (Escape | stringContentDoubleQuote)* '"' |
-    "«" stringContentSmartQuote* "\n"
+    "«" stringContentSmartQuote* ("\n" | eof)
   }
 }
 
@@ -46,10 +46,11 @@ kw<term> { kwn<term, term> }
 kwn<term, name> { @specialize[@name={name}]<identifier, term> }
 
 @tokens {
-  whitespace { std.whitespace+ }
-  digit { std.digit }
-  letter { std.asciiLetter }
-  hex { std.digit | $[a-fA-F] }
+  whitespace { @whitespace+ }
+  digit { @digit }
+  letter { @asciiLetter }
+  hex { @digit | $[a-fA-F] }
+  eof { @eof}
 
   Integer { digit+ (("e" | "E") ("+" | "-")? digit+)? }
   Floating { digit+ "." digit+ }

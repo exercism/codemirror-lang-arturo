@@ -99,7 +99,7 @@ Program(Char, Char, Char)
 
 ==>
 
-Program(String, String(Escape, Escape, Escape))
+Program(String, String(Escape, Escape, Escape), String)
 
 # Word
 
