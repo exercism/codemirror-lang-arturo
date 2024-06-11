@@ -38,7 +38,9 @@ Inline { "(" expression* ")" }
 @skip {} {
   String {
     '"' (Escape | stringContentDoubleQuote)* '"' |
-    "«" stringContentSmartQuote* ("\n" | eof)
+    "«" stringContentSmartQuote* ("\n" | eof) |
+    "{:" stringContentMultiline* ":}" |
+    "{" stringContentMultiline* "}"
   }
 }
 
@@ -64,6 +66,7 @@ kwn<term, name> { @specialize[@name={name}]<identifier, term> }
 
   stringContentDoubleQuote { ![\\\n"] }
   stringContentSmartQuote { ![\n] }
+  stringContentMultiline { ![}] }
 
   identifierChar { letter | "_" }
   identifier { identifierChar (identifierChar | digit | "?")* }
