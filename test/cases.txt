@@ -95,6 +95,7 @@ Program(Char, Char, Char)
 
 "this is a quoted string"
 "this\tis a quoted\nstring\"with escapes"
+« This is smart-quoted string
 
 ==>
 
