@@ -33,7 +33,7 @@ SymbolLiteral { "'" symbol }
 
 Word { identifier }
 
-Inline { "(" expression ")" }
+Inline { "(" expression* ")" }
 
 @skip {} {
   String {
