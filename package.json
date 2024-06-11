@@ -4,6 +4,8 @@
   "description": "Arturo language support for CodeMirror",
   "scripts": {
     "prepare": "rollup -c",
+    "generate": "lezer-generator src/syntax.grammar -o src/parser.js",
+    "test": "bun generate && bun test",
     "dev": "vite"
   },
   "type": "module",
