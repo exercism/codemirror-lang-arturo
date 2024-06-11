@@ -121,6 +121,15 @@ Program(Char, Char, Char)
 
 Program(String, String(Escape, Escape, Escape), String, String, String)
 
+# Regex
+
+{/[A-Z]/}
+{/[A-Z]/i}
+
+==>
+
+Program(Regex, Regex)
+
 # Word
 
 one

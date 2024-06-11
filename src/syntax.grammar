@@ -9,6 +9,7 @@ expression {
   Type |
   Char |
   String |
+  Regex |
   Word |
   Color |
   Literal |
@@ -44,6 +45,8 @@ Inline { "(" expression* ")" }
   }
 }
 
+Regex { "{/" regexContent* "/" ("i" | "m" | "s")* "}" }
+
 kw<term> { kwn<term, term> }
 kwn<term, name> { @specialize[@name={name}]<identifier, term> }
 
@@ -67,6 +70,10 @@ kwn<term, name> { @specialize[@name={name}]<identifier, term> }
   stringContentDoubleQuote { ![\\\n"] }
   stringContentSmartQuote { ![\n] }
   stringContentMultiline { ![}] }
+
+  regexContent { ![\\\n/] }
+
+  @precedence { regexContent, whitespace, LineComment }
 
   identifierChar { letter | "_" }
   identifier { identifierChar (identifierChar | digit | "?")* }
