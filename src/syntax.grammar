@@ -8,7 +8,8 @@ expression {
   null |
   Type |
   Char |
-  Word
+  Word |
+  Color
 }
 
 logical {
@@ -32,11 +33,14 @@ kwn<term, name> { @specialize[@name={name}]<identifier, term> }
   whitespace { std.whitespace+ }
   digit { std.digit }
   letter { std.asciiLetter }
+  hex { std.digit | $[a-fA-F] }
 
   Integer { digit+ (("e" | "E") ("+" | "-")? digit+)? }
   Floating { digit+ "." digit+ }
   Version { digit+ "." digit+ "." digit+ (letter | digit | "+" | "-" | ".")* }
   @precedence { Version, Floating, Integer }
+
+  Color { "#" (hex hex hex hex hex hex | letter+) }
 
   Char { "'" (CharEscape | ![']) "'" }
   CharEscape { "\\" _ }

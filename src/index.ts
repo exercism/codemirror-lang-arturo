@@ -27,6 +27,7 @@ export const arturoLanguage = LRLanguage.define({
         Type: t.typeName,
         Char: t.character,
         "Integer Floating Version": t.number,
+        Color: t.atom,
       }),
     ],
   }),

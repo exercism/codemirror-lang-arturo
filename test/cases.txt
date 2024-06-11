@@ -56,6 +56,15 @@ Program(null)
 
 Program(Type)
 
+# Color
+
+#red
+#0077BB
+
+==>
+
+Program(Color, Color)
+
 # Char
 
 'a'
