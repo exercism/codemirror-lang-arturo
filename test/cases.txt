@@ -64,6 +64,14 @@ Program(Type)
 
 Program(Literal)
 
+# Symbol literal
+
+'++
+
+==>
+
+Program(SymbolLiteral)
+
 # Color
 
 #red
