@@ -33,6 +33,7 @@ export const arturoLanguage = LRLanguage.define({
         "{ }": t.brace,
         Escape: t.escape,
         Regex: t.regexp,
+        "Literal SymbolLiteral": t.atom,
       }),
     ],
   }),

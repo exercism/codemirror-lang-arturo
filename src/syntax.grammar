@@ -41,7 +41,8 @@ Inline { "(" expression* ")" }
     '"' (Escape | stringContentDoubleQuote)* '"' |
     "«" stringContentSmartQuote* ("\n" | eof) |
     "{:" stringContentMultiline* ":}" |
-    "{" stringContentMultiline* "}"
+    "{" stringContentMultiline* "}" |
+    "------\n" stringContentDash* eof 
   }
 }
 
@@ -70,6 +71,7 @@ kwn<term, name> { @specialize[@name={name}]<identifier, term> }
   stringContentDoubleQuote { ![\\\n"] }
   stringContentSmartQuote { ![\n] }
   stringContentMultiline { ![}] }
+  stringContentDash { _ }
 
   regexContent { ![\\\n/] }
 

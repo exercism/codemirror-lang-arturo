@@ -116,10 +116,16 @@ Program(Char, Char, Char)
           one
           line
 :}
+------
+this
+is
+using
+dash
+notation
 
 ==>
 
-Program(String, String(Escape, Escape, Escape), String, String, String)
+Program(String, String(Escape, Escape, Escape), String, String, String, String)
 
 # Regex
 
