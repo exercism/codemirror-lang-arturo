@@ -16,7 +16,8 @@ expression {
   SymbolLiteral |
   Inline |
   Block |
-  Dictionary
+  Dictionary |
+  Function
 }
 
 logical {
@@ -43,6 +44,13 @@ Block { "[" expression* "]" }
 KeyValuePair { Word ":" expression }
 
 Dictionary { "#[" KeyValuePair* "]" }
+
+Parameter { Word }
+Parameters { "[" Parameter* "]" }
+
+Function {
+  @specialize<identifier, "function"> Parameters Block
+}
 
 @skip {} {
   String {

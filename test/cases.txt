@@ -176,3 +176,11 @@ Program(Block(Integer), Block(Logical,Logical), Block(String, Block(String)))
 ==>
 
 Program(Dictionary(KeyValuePair(Word,String),KeyValuePair(Word,String),KeyValuePair(Word,Integer)))
+
+# Function
+
+function [x y][x]
+
+==>
+
+Program(Function(Parameters(Parameter(Word),Parameter(Word)),Block(Word)))
