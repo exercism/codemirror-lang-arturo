@@ -175,7 +175,7 @@ Program(Block(Integer), Block(Logical,Logical), Block(String, Block(String)))
 
 ==>
 
-Program(Dictionary(KeyValuePair(Word,String),KeyValuePair(Word,String),KeyValuePair(Word,Integer)))
+Program(Dictionary(KeyValuePair(Key,Value(String)),KeyValuePair(Key,Value(String)),KeyValuePair(Key,Value(Integer))))
 
 # Function
 

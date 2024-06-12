@@ -67,6 +67,40 @@ null
 '9'
 '\''
 
+; Regex
+
+{/[A-Z]/}
+{/they/i}
+
+; Word
+
+one
+Two_Three
+happy?
+
+; Block
+
+[1]
+[true false]
+["hello" ["there"]]
+
+; Dictionary
+
+#[
+     name: "John"
+     surname: "Doe"
+     age: 34
+]
+
+; Inline
+
+(1)
+(true false)
+
+; Function
+
+function [x y][x]
+
 ; String
 
 "this is a quoted string"
@@ -97,22 +131,6 @@ is
 using
 dash
 notation
-
-; Regex
-
-{/[A-Z]/}
-{/they/i}
-
-; Word
-
-one
-Two_Three
-happy?
-
-; Inline
-
-(1)
-(true false)
 `,
             extensions: [
                 basicSetup,

@@ -41,7 +41,9 @@ Inline { "(" expression* ")" }
 
 Block { "[" expression* "]" }
 
-KeyValuePair { Word ":" expression }
+Key { identifier }
+Value { expression }
+KeyValuePair { Key ":" Value }
 
 Dictionary { "#[" KeyValuePair* "]" }
 
