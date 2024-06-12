@@ -154,3 +154,13 @@ Program(Word, Word, Word)
 ==>
 
 Program(Inline(Integer), Inline(Logical,Logical))
+
+# Block
+
+[1]
+[true false]
+["hello" ["there"]]
+
+==>
+
+Program(Block(Integer), Block(Logical,Logical), Block(String, Block(String)))
