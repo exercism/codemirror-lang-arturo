@@ -15,7 +15,8 @@ expression {
   Literal |
   SymbolLiteral |
   Inline |
-  Block
+  Block |
+  Dictionary
 }
 
 logical {
@@ -38,6 +39,10 @@ Word { identifier }
 Inline { "(" expression* ")" }
 
 Block { "[" expression* "]" }
+
+KeyValuePair { Word ":" expression }
+
+Dictionary { "#[" KeyValuePair* "]" }
 
 @skip {} {
   String {

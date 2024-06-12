@@ -164,3 +164,15 @@ Program(Inline(Integer), Inline(Logical,Logical))
 ==>
 
 Program(Block(Integer), Block(Logical,Logical), Block(String, Block(String)))
+
+# Dictionary
+
+#[
+     name: "John"
+     surname: "Doe"
+     age: 34
+]
+
+==>
+
+Program(Dictionary(KeyValuePair(Word,String),KeyValuePair(Word,String),KeyValuePair(Word,Integer)))
