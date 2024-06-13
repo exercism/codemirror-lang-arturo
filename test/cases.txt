@@ -59,18 +59,11 @@ Program(Type)
 # Literal
 
 'foo
-
-==>
-
-Program(Literal)
-
-# Symbol literal
-
 '++
 
 ==>
 
-Program(SymbolLiteral)
+Program(Literal(Word),Literal(Symbol))
 
 # Color
 
@@ -179,8 +172,19 @@ Program(Dictionary(KeyValuePair(Key,Value(String)),KeyValuePair(Key,Value(String
 
 # Function
 
-function [x y][x]
+function [x y][x + y]
 
 ==>
 
-Program(Function(Parameters(Parameter(Word),Parameter(Word)),Block(Word)))
+Program(Function(Parameters(Parameter(Word),Parameter(Word)),Block(Word,Symbol,Word)))
+
+# Expressions
+
+x + y
+x - y
+x / y
+x * y
+
+==>
+
+Program(Word,Symbol,Word,Word,Symbol,Word,Word,Symbol,Word,Word,Symbol,Word)
