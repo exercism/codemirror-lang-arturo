@@ -1,7 +1,11 @@
 {
-  "name": "codemirror-lang-arturo",
+  "name": "@exercism/codemirror-lang-arturo",
   "version": "0.1.0",
   "description": "Arturo language support for CodeMirror",
+  "author": {
+    "name": "Erik Schierboom",
+    "email": "erik_schierboom@hotmail.com"
+  },
   "scripts": {
     "prepare": "rollup -c",
     "generate": "lezer-generator src/syntax.grammar -o src/parser.js",
@@ -17,6 +21,9 @@
   },
   "types": "dist/index.d.ts",
   "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@codemirror/language": "^6.10.2",
     "@lezer/highlight": "^1.2.0",
