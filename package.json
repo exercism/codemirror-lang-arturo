@@ -1,6 +1,6 @@
 {
   "name": "@exercism/codemirror-lang-arturo",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Arturo language support for CodeMirror",
   "author": {
     "name": "Erik Schierboom",
@@ -10,8 +10,7 @@
     "prepare": "rollup -c",
     "generate": "lezer-generator src/syntax.grammar -o src/parser.js",
     "test": "bun generate && bun test",
-    "dev": "vite",
-    "publish": "bun run prepare && npm publish"
+    "dev": "vite"
   },
   "type": "module",
   "main": "dist/index.cjs",
