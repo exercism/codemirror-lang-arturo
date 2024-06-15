@@ -10,6 +10,7 @@ import {
 import { styleTags, tags as t } from "@lezer/highlight";
 
 export const arturoLanguage = LRLanguage.define({
+  name: "arturo",
   parser: parser.configure({
     props: [
       indentNodeProp.add({
