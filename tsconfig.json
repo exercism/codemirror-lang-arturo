@@ -8,5 +8,5 @@
     "outDir": "dist",
     "moduleResolution": "node"
   },
-  "include": ["src/*.ts", "src/*.js"]
+  "include": ["src/*.ts"]
 }

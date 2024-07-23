@@ -1,7 +1,6 @@
 import typescript from "@rollup/plugin-typescript";
 import json from "@rollup/plugin-json";
 import { lezer } from "@lezer/generator/rollup";
-// import tsConfig from "./tsconfig.json" with { type: "json" };
 
 export default {
   input: "src/index.ts",
