@@ -8,7 +8,7 @@
   },
   "scripts": {
     "prepare": "rollup -c",
-    "generate": "lezer-generator src/syntax.grammar -o src/parser.js",
+    "generate": "lezer-generator src/lezer/syntax.grammar -o src/lezer/parser.js",
     "test": "bun generate && bun test",
     "dev": "vite",
     "release": "bun run prepare && npm publish"
