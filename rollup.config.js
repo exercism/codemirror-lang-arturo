@@ -7,7 +7,7 @@ export default {
   external: (id) => id != "tslib" && !/^(\.?\/|\w:)/.test(id),
   output: [
     { file: "dist/index.cjs", format: "cjs" },
-    { dir: "./dist", format: "es" },
+    { file: "./dist/index.es.js", format: "es" },
   ],
   plugins: [lezer(), json(), typescript()],
 };
