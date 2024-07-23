@@ -8,7 +8,7 @@
   },
   "scripts": {
     "prepare": "rollup -c",
-    "generate": "lezer-generator src/lezer/syntax.grammar -o src/lezer/parser.js",
+    "generate": "lezer-generator src/lezer/syntax.grammar -o src/lezer/parser.ts",
     "test": "bun generate && bun test",
     "dev": "vite",
     "release": "bun run prepare && npm publish"
@@ -31,6 +31,8 @@
     "@lezer/lr": "^1.4.1"
   },
   "devDependencies": {
+    "@rollup/plugin-typescript": "11.1.6",
+    "@rollup/plugin-json": "6.1.0",
     "@lezer/generator": "^1.7.0",
     "@types/bun": "^1.1.3",
     "codemirror": "^6.0.1",

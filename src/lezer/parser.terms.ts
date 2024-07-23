@@ -2,11 +2,9 @@
 export const
   LineComment = 1,
   Program = 2,
-  Logical = 3,
   Integer = 4,
   Floating = 5,
   Version = 6,
-  _null = 7,
   Type = 8,
   Char = 9,
   String = 10,
